@@ -1,3 +1,9 @@
 .nav-link {
     color: white !important;
 }
+
+@media only screen and (max-width: 1200px) and (min-width: 990px) {
+    .navbar {
+        height: 72px;
+    }
+}

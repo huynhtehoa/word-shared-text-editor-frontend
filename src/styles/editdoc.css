@@ -49,4 +49,5 @@
 .save-btn:hover {
     color: white;
     background-color: #148394;
+    box-shadow: 0 0 5px;
 }

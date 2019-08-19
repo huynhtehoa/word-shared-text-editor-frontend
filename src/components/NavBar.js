@@ -64,13 +64,13 @@ export default class NavBar extends React.Component {
                     </Navbar.Brand>
                 </a>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                <Navbar.Collapse id="responsive-navbar-nav" style={{ textAlign: "center" }}>
                     <Nav className="mr-auto">
                         <a className="nav-link" href="#" onClick={this.backHomePage}>All Documents</a>
                         <a className="nav-link" href="#" onClick={this.createDoc}>New Document</a>
                         <a className="nav-link" href="#" onClick={this.faq}>FAQ</a>
                     </Nav>
-                    <Form inline onSubmit={this.handleSearch}>
+                    <Form inline onSubmit={this.handleSearch} className="d-flex justify-content-center ml-auto mt-4 mb-4 mt-xl-0 mb-xl-0">
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleSearchChange} />
                         <Button variant="outline-info" onClick={this.handleSearch}>Search</Button>
                     </Form>

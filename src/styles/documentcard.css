@@ -1,5 +1,5 @@
 .over-flow {
-    overflow-y: scroll;
+    overflow: scroll;
 }
 
 .over-flow::-webkit-scrollbar {

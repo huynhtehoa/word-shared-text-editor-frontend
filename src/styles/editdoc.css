@@ -1,0 +1,52 @@
+#input-title {
+    border: none;
+    padding: 0 15px 15px 15px;
+    margin: 0 10px 10px 10px;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+#input-title:hover {
+    border: 2px solid #17a2b8;
+}
+
+@media only screen and (max-width: 450px) {
+    #input-title {
+        font-size: large;
+        padding: 0 10px 10px 10px;
+    }
+}
+
+.ck-content {
+    height: 70vh;
+}
+
+.alert-message {
+    color: white;
+    background: #ffa000;
+    padding: 6px 16px;
+    border-radius: 4px;
+}
+
+.success-message {
+    color: white;
+    background: #43a047;
+    padding: 6px 16px;
+    border-radius: 4px;
+}
+
+.save-btn {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding-right: 40px;
+    padding-left: 40px;
+    color: white;
+    background: #17a2b8;
+    transition: all .15s ease-in-out;
+}
+
+.save-btn:hover {
+    color: white;
+    background-color: #148394;
+}

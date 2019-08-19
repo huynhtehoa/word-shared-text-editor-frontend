@@ -1,0 +1,11 @@
+.over-flow {
+    overflow-y: scroll;
+}
+
+.over-flow::-webkit-scrollbar {
+    display: none;
+}
+
+.MuiCardActions-spacing > * + * {
+    margin: 0 !important;
+}

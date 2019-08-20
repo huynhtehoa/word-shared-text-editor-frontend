@@ -30,13 +30,13 @@ const useStyles = makeStyles({
 });
 
 const handleEditClick = (e, id) => {
-    return window.location.replace(`https://world-messages.netlify.com/edit/${id}`)
+    return window.location.replace(`https://world-messages.netlify.com/edit/${id}`);
 }
 
 export default function DocumentCard(props) {
     const classes = useStyles();
     const { id, title, body, created_at, updated_at } = props.document;
-    console.log(body)
+
     return (
         <Card className={classes.card}>
             <CardActionArea onClick={e => handleEditClick(e, id)}>

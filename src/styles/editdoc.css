@@ -18,11 +18,16 @@
     }
 }
 
-/* .ck-content {
-    height: 70vh;
-} */
+.editor-container {
+    width: 100%;
+    margin: auto;
+}
 
-.text-area {
+#cke_1_contents {
+    height: 60vh !important;
+}
+
+/* .text-area {
     width: 100%;
     height: 70vh;
     border-radius: 6px;
@@ -32,7 +37,7 @@
 
 .text-area:focus {
     outline: none !important;
-}
+} */
 
 .alert-message {
     color: white;

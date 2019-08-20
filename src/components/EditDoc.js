@@ -1,7 +1,6 @@
 import React from 'react';
 
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from 'ckeditor4-react';
 
 import Popover from '@material-ui/core/Popover';
 import WarningIcon from '@material-ui/icons/Warning';
@@ -182,21 +181,12 @@ export default class NewDoc extends React.Component {
                         <div className="col-12 text-center">
                             <input id="input-title" onBlur={this.checkTitle} onChange={e => this.setState({ title: e.target.value })} value={title} />
                         </div>
-                        <div className="col-12 mx-auto w-100">
-                            <textarea className="text-area" autofocus value={body} onChange={e => this.setState({ body: e.target.value })} />
-
-                            {/* <CKEditor
+                        <div className="col-12 editor-container">
+                            <CKEditor
                                 data={body}
-                                editor={ClassicEditor}
-                                onChange={(e, editor) => {
-                                    const data = editor.getData();
-                                    this.setState({ body: data });
-                                }}
-                                config={{
-                                    removePlugins: ['image'],
-                                    toolbar: ['Heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'link', 'undo', 'redo']
-                                }}
-                            /> */}
+                                onChange={e => this.setState({ body: e.editor.getData() })}
+                                config={{ language: 'en' }}
+                            />
                         </div>
                         <div className="col-12 text-center">
                             <button className="btn-lg btn save-btn" onClick={this.doubleFunctionSave}>Save</button>

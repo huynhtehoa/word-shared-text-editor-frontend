@@ -27,7 +27,7 @@ export default class NavBar extends React.Component {
         if (/^\s*$/.test(this.state.searchInput)) {
             alert('You cannot leave it blank');
         } else {
-            return window.location.replace(`http://localhost:3000/search?=${this.state.searchInput}`);
+            return window.location.replace(`http://word-messages.netlify.com/search?=${this.state.searchInput}`);
         }
     }
 
@@ -46,16 +46,16 @@ export default class NavBar extends React.Component {
         let jsonData = await res.json()
         this.setState({
             newDocId: jsonData.doc_id,
-        }, () => window.location.replace(`http://localhost:3000/edit/${this.state.newDocId}`))
+        }, () => window.location.replace(`http://word-messages.netlify.com/edit/${this.state.newDocId}`))
 
     };
 
     backHomePage = () => {
-        return window.location.replace('http://localhost:3000')
+        return window.location.replace('http://word-messages.netlify.com')
     };
 
     faq = () => {
-        return window.location.replace('http://localhost:3000/faq')
+        return window.location.replace('http://word-messages.netlify.com/faq')
     }
 
     render() {

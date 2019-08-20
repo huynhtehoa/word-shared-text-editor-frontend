@@ -39,7 +39,7 @@ export default class SearchPage extends React.Component {
                         </Typography>
                     </div>
                     <div className="col-12 flex-box">
-                        <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://localhost:3000`)}>View All Documents</button>
+                        <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://word-messages.netlify.com`)}>View All Documents</button>
                     </div>
                 </>
             )

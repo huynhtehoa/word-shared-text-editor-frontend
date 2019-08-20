@@ -69,7 +69,7 @@ export default class HomePage extends React.Component {
                         </Typography>
                     </div>
                     <div className="col-12 flex-box">
-                        <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://localhost:3000/edit/${document.id}`)}>Create One Now!</button>
+                        <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://word-messages.netlify.com/edit/${document.id}`)}>Create One Now!</button>
                     </div>
                 </>
             )

@@ -1,15 +1,19 @@
 import React from 'react';
 
-import DocumentCard from './DocumentCard'
-
 import Typography from '@material-ui/core/Typography';
+
+import { RingLoader } from 'react-spinners';
+
+import DocumentCard from './DocumentCard';
+
 
 export default class SearchPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            documents: []
+            documents: [],
+            loading: false
         };
     };
 
@@ -25,6 +29,7 @@ export default class SearchPage extends React.Component {
 
         this.setState({
             documents: jsonData.results,
+            loading: true
         });
     }
 
@@ -57,16 +62,24 @@ export default class SearchPage extends React.Component {
     render() {
         return (
             <>
-                <div className="container">
-                    <div className="row">
-                        <div className="col flex-box">
-                            <h2>Your search results</h2>
+                {
+                    (this.state.loading)
+                        ?
+                        <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                            <RingLoader color={"#17a2b8"} />
                         </div>
-                    </div>
-                    <div className="row">
-                        <this.Document />
-                    </div>
-                </div>
+                        :
+                        <div className="container">
+                            <div className="row">
+                                <div className="col flex-box">
+                                    <h2>Your search results</h2>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <this.Document />
+                            </div>
+                        </div>
+                }
             </>
         );
     };

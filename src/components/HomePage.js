@@ -2,6 +2,8 @@ import React from 'react';
 
 import Typography from '@material-ui/core/Typography';
 
+import { RingLoader } from 'react-spinners';
+
 import DocumentCard from './DocumentCard'
 
 import '../styles/homepage.css'
@@ -14,7 +16,8 @@ export default class HomePage extends React.Component {
             documents: [],
             pageNo: 1,
             totalPages: null,
-            scrolling: false
+            scrolling: false,
+            loading: true
         };
     };
 
@@ -23,6 +26,7 @@ export default class HomePage extends React.Component {
         this.scrollListener = window.addEventListener("scroll", e => {
             this.handleScroll(e)
         });
+
     };
 
     getDoc = async () => {
@@ -33,7 +37,8 @@ export default class HomePage extends React.Component {
         this.setState({
             documents: documents.concat(jsonData.results),
             totalPages: jsonData.total_pages,
-            scrolling: false
+            scrolling: false,
+            loading: false
         });
     };
 
@@ -87,23 +92,31 @@ export default class HomePage extends React.Component {
     render() {
         return (
             <>
-                <div className="container document-container">
-                    <div className="row">
-                        <div className="col-12 flex-box mb-3 text-center">
-                            <Typography variant="h2">
-                                World-shared Message Editor
-                            </Typography>
+                {
+                    (this.state.loading)
+                        ?
+                        <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                            <RingLoader color={"#17a2b8"} />
                         </div>
-                        <div className="col-12 flex-box mb-5 text-center">
-                            <Typography variant="h4" className="sub-title">
-                                <span>Share your message to the world now!</span>
+                        :
+                        <div className="container document-container">
+                            <div className="row">
+                                <div className="col-12 flex-box mb-3 text-center">
+                                    <Typography variant="h2">
+                                        World-shared Message Editor
                             </Typography>
+                                </div>
+                                <div className="col-12 flex-box mb-5 text-center">
+                                    <Typography variant="h4" className="sub-title">
+                                        <span>Share your message to the world now!</span>
+                                    </Typography>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <this.Document />
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <this.Document />
-                    </div>
-                </div>
+                }
             </>
         );
     };

@@ -29,7 +29,7 @@ export default class HomePage extends React.Component {
 
     getDoc = async () => {
         const { pageNo, documents } = this.state;
-        const res = await fetch(`https://127.0.0.1:5000/getdoc/${pageNo}`);
+        const res = await fetch(`https://word-shared-text-editor.herokuapp.com/getdoc/${pageNo}`);
         const jsonData = await res.json();
 
         this.setState({
@@ -65,11 +65,11 @@ export default class HomePage extends React.Component {
         if (documents.length === 0) {
             return (
                 <>
-                    <div className="col-12 flex-box">
-                        Currently, there are no documents available
+                    <div className="col-12 flex-box" style={{ marginTop: '100px' }}>
+                        Currently, there is no document available
                     </div>
                     <div className="col-12 flex-box">
-                        <button onClick={() => window.location.replace(`http://localhost:3000/edit/${document.id}`)}>Create One Now!</button>
+                        <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://localhost:3000/edit/${document.id}`)}>Create One Now!</button>
                     </div>
                 </>
             )

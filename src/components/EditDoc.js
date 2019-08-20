@@ -46,7 +46,7 @@ export default class NewDoc extends React.Component {
     }
 
     getAllDoc = async () => {
-        const res = await fetch('https://127.0.0.1:5000/getalldoc');
+        const res = await fetch('https://word-shared-text-editor.herokuapp.com/getalldoc');
         const jsonData = await res.json();
 
         jsonData.results.map(({ id, title, body }) => {
@@ -70,7 +70,7 @@ export default class NewDoc extends React.Component {
         };
 
         if (!isExisted && !isLong && !isBlank) {
-            await fetch(`https://127.0.0.1:5000/edit/${id}`, {
+            await fetch(`https://word-shared-text-editor.herokuapp.com/edit/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify(data),
                 headers: {
@@ -182,7 +182,7 @@ export default class NewDoc extends React.Component {
                                 }}
                                 config={{
                                     removePlugins: ['image'],
-                                    toolbar: ['Heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
+                                    toolbar: ['Heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'link', 'undo', 'redo']
                                 }}
                             />
                         </div>

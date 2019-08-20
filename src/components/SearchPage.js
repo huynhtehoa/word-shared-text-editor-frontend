@@ -18,7 +18,7 @@ export default class SearchPage extends React.Component {
     getSearchDocuments = async () => {
         let searchInput = window.location.search.split("=")[1];
 
-        let res = await fetch(`https://127.0.0.1:5000/search/${searchInput}`);
+        let res = await fetch(`https://word-shared-text-editor.herokuapp.com/search/${searchInput}`);
         let jsonData = await res.json();
 
         this.setState({
@@ -31,8 +31,11 @@ export default class SearchPage extends React.Component {
         if (documents.length === 0) {
             return (
                 <>
+                    <div className="col-12 flex-box" style={{ marginTop: '100px' }}>
+                        No documents found
+                    </div>
                     <div className="col-12 flex-box">
-                        No document found
+                        <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://localhost:3000`)}>View All Documents</button>
                     </div>
                 </>
             )

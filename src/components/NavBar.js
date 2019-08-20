@@ -24,7 +24,11 @@ export default class NavBar extends React.Component {
     handleSearch = e => {
         e.preventDefault();
 
-        return window.location.replace(`http://localhost:3000/search?=${this.state.searchInput}`);
+        if (/^\s*$/.test(this.state.searchInput)) {
+            alert('You cannot leave it blank');
+        } else {
+            return window.location.replace(`http://localhost:3000/search?=${this.state.searchInput}`);
+        }
     }
 
     createDoc = async e => {
@@ -32,7 +36,7 @@ export default class NavBar extends React.Component {
 
         let data = { "new_datetime": new Date() }
 
-        let res = await fetch('https://127.0.0.1:5000/newdoc', {
+        let res = await fetch('https://word-shared-text-editor.herokuapp.com/newdoc', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {

@@ -99,7 +99,7 @@ export default class NewDoc extends React.Component {
 
         this.setState({
             isSaved: true,
-            anchorEl: currentTarget
+            anchorEl: true
         });
         setTimeout(() => this.handleClose(), 2000);
     };

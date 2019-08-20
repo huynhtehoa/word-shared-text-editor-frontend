@@ -2,6 +2,8 @@ import React from 'react';
 
 import DocumentCard from './DocumentCard'
 
+import Typography from '@material-ui/core/Typography';
+
 export default class SearchPage extends React.Component {
 
     constructor(props) {
@@ -31,8 +33,10 @@ export default class SearchPage extends React.Component {
         if (documents.length === 0) {
             return (
                 <>
-                    <div className="col-12 flex-box" style={{ marginTop: '100px' }}>
-                        No documents found
+                    <div className="col-12 flex-box" style={{ marginTop: '280px' }}>
+                        <Typography variant="h6">
+                            No documents found
+                        </Typography>
                     </div>
                     <div className="col-12 flex-box">
                         <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://localhost:3000`)}>View All Documents</button>
@@ -54,15 +58,15 @@ export default class SearchPage extends React.Component {
         return (
             <>
                 <div className="container">
-                <div className="row">
-                    <div className="col flex-box">
-                        <h2>Your search results</h2>
+                    <div className="row">
+                        <div className="col flex-box">
+                            <h2>Your search results</h2>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <this.Document />
                     </div>
                 </div>
-                <div className="row">
-                    <this.Document />
-                </div>
-            </div>
             </>
         );
     };

@@ -33,6 +33,15 @@ export default class NewDoc extends React.Component {
         this.getAllDoc();
         this.autoSave();
         document.getElementById("input-title").focus();
+        this.handleSaveShortcut = window.addEventListener("keydown", e => {
+            this.handleShortcutSave(e);
+        });
+    };
+
+    handleShortcutSave = e => {
+        if (e.ctrlKey && e.shiftKey && e.which === 83) {
+            this.doubleFunctionSave(e);
+        };
     };
 
     handleClose = () => {
@@ -43,7 +52,7 @@ export default class NewDoc extends React.Component {
             isLong: false,
             isSaved: false
         });
-    }
+    };
 
     getAllDoc = async () => {
         const res = await fetch('https://word-shared-text-editor.herokuapp.com/getalldoc');
@@ -208,10 +217,10 @@ export default class NewDoc extends React.Component {
                             >
                                 {
                                     (isSaved)
-                                    ?
-                                    <div className="success-message"><CheckCircleIcon />&nbsp;<this.AlertMessage /></div>
-                                    :
-                                    <div className="alert-message"><WarningIcon />&nbsp;<this.AlertMessage /></div>
+                                        ?
+                                        <div className="success-message"><CheckCircleIcon />&nbsp;<this.AlertMessage /></div>
+                                        :
+                                        <div className="alert-message"><WarningIcon />&nbsp;<this.AlertMessage /></div>
                                 }
                             </Popover>
                         </div>

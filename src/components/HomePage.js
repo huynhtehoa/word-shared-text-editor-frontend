@@ -6,8 +6,6 @@ import DocumentCard from './DocumentCard'
 
 import '../styles/homepage.css'
 
-
-
 export default class HomePage extends React.Component {
 
     constructor(props) {
@@ -66,7 +64,9 @@ export default class HomePage extends React.Component {
             return (
                 <>
                     <div className="col-12 flex-box" style={{ marginTop: '100px' }}>
-                        Currently, there is no document available
+                        <Typography variant="h6">
+                            Currently, there is no message available
+                        </Typography>
                     </div>
                     <div className="col-12 flex-box">
                         <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://localhost:3000/edit/${document.id}`)}>Create One Now!</button>
@@ -91,10 +91,10 @@ export default class HomePage extends React.Component {
                     <div className="row">
                         <div className="col-12 flex-box mb-3 text-center">
                             <Typography variant="h2">
-                                World-shared Text Editor
+                                World-shared Message Editor
                             </Typography>
                         </div>
-                        <div className="col-12 flex-box mb-3 text-center">
+                        <div className="col-12 flex-box mb-5 text-center">
                             <Typography variant="h4" className="sub-title">
                                 <span>Share your message to the world now!</span>
                             </Typography>

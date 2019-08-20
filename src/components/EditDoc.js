@@ -66,7 +66,7 @@ export default class NewDoc extends React.Component {
     };
     handleShortcutSave = e => {
         if (e.ctrlKey && e.shiftKey && e.which === 83) {
-            this.doubleFunctionSave(e);
+            this.doubleFunctionSave();
         };
     };
 
@@ -89,13 +89,12 @@ export default class NewDoc extends React.Component {
         };
     };
 
-    doubleFunctionSave = async e => {
+    doubleFunctionSave = async () => {
         await this.handleSave();
-        this.promptSave(e);
+        this.promptSave();
     };
 
-    promptSave = e => {
-        let currentTarget = e.currentTarget;
+    promptSave = () => {
 
         this.setState({
             isSaved: true,

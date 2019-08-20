@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 const handleEditClick = (e, id) => {
-    return window.location.replace(`http://world-messages.netlify.com/edit/${id}`)
+    return window.location.replace(`https://world-messages.netlify.com/edit/${id}`)
 }
 
 export default function DocumentCard(props) {

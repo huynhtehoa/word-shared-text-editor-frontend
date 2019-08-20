@@ -2,12 +2,31 @@ import React from 'react';
 
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+// import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+// import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
+// import Link from '@ckeditor/ckeditor5-link/src/link';
+// import List from '@ckeditor/ckeditor5-list/src/list';
+// import Heading from '@ckeditor/ckeditor5-heading/src/heading';
+// import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 
 import Popover from '@material-ui/core/Popover';
 import WarningIcon from '@material-ui/icons/Warning';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import '../styles/editdoc.css'
+
+
+ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        toolbar: [ 'bold', 'italic' ]                      
+    } )
+    .then( editor => {
+        console.log( 'Editor was initialized', editor );
+    } )
+    .catch( error => {
+        console.error( error.stack );
+    } );
 
 export default class NewDoc extends React.Component {
 
@@ -183,20 +202,16 @@ export default class NewDoc extends React.Component {
                         </div>
                         <div className="col-12 mx-auto">
                             <CKEditor
-                                onInit={editor => {
-                                    // You can store the "editor" and use when it is needed.
-                                    console.log('Editor is ready to use!', editor);
-                                }}
                                 data={body}
                                 editor={ClassicEditor}
                                 onChange={(e, editor) => {
                                     const data = editor.getData();
                                     this.setState({ body: data });
                                 }}
-                                config={{
-                                    removePlugins: ['image'],
-                                    toolbar: ['Heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'link', 'undo', 'redo']
-                                }}
+                                // config={{
+                                //     removePlugins: ['image'],
+                                //     toolbar: ['Heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'link', 'undo', 'redo']
+                                // }}
                             />
                         </div>
                         <div className="col-12 text-center">

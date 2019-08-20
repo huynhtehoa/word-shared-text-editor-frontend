@@ -89,12 +89,12 @@ export default class NewDoc extends React.Component {
         };
     };
 
-    doubleFunctionSave = e => {
-        this.handleSave();
-        this.prompSave(e);
+    doubleFunctionSave = async e => {
+        await this.handleSave();
+        this.promptSave(e);
     };
 
-    prompSave = e => {
+    promptSave = e => {
         this.setState({
             isSaved: true,
             anchorEl: e.currentTarget
@@ -156,13 +156,13 @@ export default class NewDoc extends React.Component {
         let message = '';
 
         if (isExisted) {
-            message = 'Your doc title already exists!';
+            return 'Your doc title already exists!';
         } else if (isLong) {
-            message = 'Your doc title must not exceed 30 characters!';
+            return 'Your doc title must not exceed 30 characters!';
         } else if (isBlank) {
-            message = 'Your doc title cannot be blank!';
+            return 'Your doc title cannot be blank!';
         } else if (isSaved) {
-            message = 'Your doc has been saved!';
+            return 'Your doc has been saved!';
         };
 
         return message;

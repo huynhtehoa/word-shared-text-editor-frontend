@@ -9,3 +9,8 @@
 .MuiCardActions-spacing > * + * {
     margin: 0 !important;
 }
+
+.edit-link {
+    color: unset !important;
+    text-decoration: none !important;
+}

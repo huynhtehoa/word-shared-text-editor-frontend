@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 
 import { RingLoader } from 'react-spinners';
 
 import DocumentCard from './DocumentCard';
-
+import NavBar from './NavBar';
 
 export default class SearchPage extends React.Component {
 
@@ -44,7 +45,7 @@ export default class SearchPage extends React.Component {
                         </Typography>
                     </div>
                     <div className="col-12 flex-box">
-                        <button className="btn btn-large save-btn" onClick={() => window.location.replace(`http://world-messages.netlify.com`)}>View All Documents</button>
+                        <Link to='/'><button className="btn btn-large save-btn">View All Documents</button></Link>
                     </div>
                 </>
             )
@@ -62,10 +63,11 @@ export default class SearchPage extends React.Component {
     render() {
         return (
             <>
+                <NavBar />
                 {
                     (this.state.loading)
                         ?
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                        <div className="d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                             <RingLoader color={"#17a2b8"} />
                         </div>
                         :

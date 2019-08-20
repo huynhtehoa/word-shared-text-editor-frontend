@@ -2,34 +2,96 @@ import React from 'react';
 
 import { Nav, Navbar, Form, Button, FormControl } from 'react-bootstrap';
 
+import { NavLink } from 'react-router-dom'
+
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
 import '../styles/navbar.css'
 
 export default class NavBar extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             newDocId: null,
+            documents: [],
+            searchPreview: [],
             searchInput: '',
-            searchedDocuments: [],
-            isSearched: false
+            isSearched: false,
         };
+    };
+
+    componentDidMount = () => {
+        this.getAllDoc();
+    };
+
+    getAllDoc = async () => {
+        const res = await fetch('https://word-shared-text-editor.herokuapp.com/getalldoc');
+        const jsonData = await res.json();
+
+        this.setState({
+            documents: jsonData.results
+        });
+    };
+
+    searchPreview = (searchInput) => {
+        if (/^\s*$/.test(searchInput)) {
+            this.hidePreview();
+            this.setState({
+                searchPreview: [],
+            });
+        } else {
+            let filteredPreview = this.state.documents.filter(doc =>
+                doc.title.concat(doc.body).toLowerCase().includes(searchInput.toLowerCase()))
+            this.setState({
+                searchPreview: filteredPreview,
+            }, () => this.RenderPreview());
+        };
+    };
+
+    hidePreview = () => {
+        return document.getElementById('dropdown-content').style.display = "none";
+    }
+
+    RenderPreview = () => {
+        const { searchPreview } = this.state;
+
+        return (
+            searchPreview.map(({ title, id }) => {
+                document.getElementById('dropdown-content').style.display = "block";
+                return (
+                    <NavLink key={id} to='#' onClick={e => this.clickThroughPreview(e, id)}>
+                        {title}
+                    </NavLink>
+                );
+            })
+        );
+    };
+
+    clickThroughPreview = (e, id) => {
+        this.hidePreview();
+        return window.location.replace(`https://world-messages.netlify.com/edit/${id}`);
     };
 
     handleSearchChange = e => {
         this.setState({
             searchInput: e.target.value
-        });
+        }, () => this.searchPreview(this.state.searchInput));
     };
 
     handleSearch = e => {
+        const { searchInput } = this.state;
+
         e.preventDefault();
 
-        if (/^\s*$/.test(this.state.searchInput)) {
+        if (/^\s*$/.test(searchInput)) {
             alert('You cannot leave it blank');
         } else {
-            return window.location.replace(`https://world-messages.netlify.com/search?=${this.state.searchInput}`);
-        }
-    }
+            this.setState({
+                isSearched: true
+            }, () => window.location.replace(`https://world-messages.netlify.com/search?=${searchInput}`));
+        };
+    };
 
     createDoc = async e => {
         e.preventDefault();
@@ -47,36 +109,43 @@ export default class NavBar extends React.Component {
         this.setState({
             newDocId: jsonData.doc_id,
         }, () => window.location.replace(`https://world-messages.netlify.com/edit/${this.state.newDocId}`))
-
     };
 
-    backHomePage = () => {
-        return window.location.replace('https://world-messages.netlify.com')
+    handleClickAway = () => {
+        this.hidePreview();
+        document.getElementById('search-input').value = "";
+        this.setState({
+            searchInput: "",
+            searchPreview: []
+        });
     };
-
-    faq = () => {
-        return window.location.replace('https://world-messages.netlify.com/faq')
-    }
 
     render() {
 
         return (
             <Navbar collapseOnSelect expand="lg" fixed="top" bg="dark" variant="dark">
-                <a className="nav-link" href="#" onClick={this.backHomePage}>
+                <NavLink to='/'>
                     <Navbar.Brand>
                         WSME
                     </Navbar.Brand>
-                </a>
+                </NavLink>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" style={{ textAlign: "center" }}>
                     <Nav className="mr-auto">
-                        <a className="nav-link" href="#" onClick={this.backHomePage}>All Message</a>
-                        <a className="nav-link" href="#" onClick={this.createDoc}>New Message</a>
-                        <a className="nav-link" href="#" onClick={this.faq}>FAQ</a>
+                        <NavLink to='/' className="nav-link">All Messages</NavLink>
+                        <NavLink to='#' className="nav-link" onClick={this.createDoc}>New Message</NavLink>
+                        <NavLink to='/faq' className="nav-link">FAQ</NavLink>
                     </Nav>
                     <Form inline onSubmit={this.handleSearch} className="d-flex justify-content-center ml-auto mt-4 mb-4 mt-xl-0 mb-xl-0">
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleSearchChange} />
-                        <Button variant="outline-info" onClick={this.handleSearch}>Search</Button>
+                        <div className="dropdown">
+                            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleSearchChange} />
+                            <ClickAwayListener onClickAway={this.handleClickAway}>
+                                <div id="dropdown-content">
+                                    <this.RenderPreview />
+                                </div>
+                            </ClickAwayListener>
+                        </div>
+                        <Button variant="outline-info" id="search-input" onClick={this.handleSearch}>Search</Button>
                     </Form>
                 </Navbar.Collapse>
             </Navbar>

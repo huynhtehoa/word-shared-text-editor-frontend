@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -6,7 +7,7 @@ import { RingLoader } from 'react-spinners';
 
 import DocumentCard from './DocumentCard'
 
-import '../styles/homepage.css'
+import '../styles/homepage.css';
 
 export default class HomePage extends React.Component {
 
@@ -46,20 +47,20 @@ export default class HomePage extends React.Component {
         this.setState({
             pageNo: this.state.pageNo + 1,
             scrolling: true
-        }, () => this.getDoc())
-    }
+        }, () => this.getDoc());
+    };
 
     handleScroll = e => {
-        const { scrolling, totalPages, pageNo } = this.state
-        if (scrolling) return
-        if (totalPages <= pageNo) return
+        const { scrolling, totalPages, pageNo } = this.state;
+        if (scrolling) return;
+        if (totalPages <= pageNo) return;
 
-        const lastCol = document.querySelector("div.document-container > div:last-child")
-        const lastColOffset = lastCol.offsetTop + lastCol.clientHeight
-        const pageOffset = window.pageYOffset + window.innerHeight
-        let bottomOffset = 20
+        const lastCol = document.querySelector("div.document-container > div:last-child");
+        const lastColOffset = lastCol.offsetTop + lastCol.clientHeight;
+        const pageOffset = window.pageYOffset + window.innerHeight;
+        let bottomOffset = 20;
 
-        if (pageOffset > lastColOffset - bottomOffset) this.loadMore()
+        if (pageOffset > lastColOffset - bottomOffset) this.loadMore();
     }
 
     Document = () => {
@@ -72,9 +73,6 @@ export default class HomePage extends React.Component {
                         <Typography variant="h6">
                             Currently, there is no message available
                         </Typography>
-                    </div>
-                    <div className="col-12 flex-box">
-                        <button className="btn btn-large save-btn" onClick={() => window.location.replace(`https://world-messages.netlify.com/edit/${document.id}`)}>Create One Now!</button>
                     </div>
                 </>
             )
@@ -95,7 +93,7 @@ export default class HomePage extends React.Component {
                 {
                     (this.state.loading)
                         ?
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                        <div className="d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
                             <RingLoader color={"#17a2b8"} />
                         </div>
                         :

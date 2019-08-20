@@ -92,13 +92,13 @@ export default class HomePage extends React.Component {
     render() {
         return (
             <>
-                {
+                {/* {
                     (this.state.loading)
                         ?
                         <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
                             <RingLoader color={"#17a2b8"} />
                         </div>
-                        :
+                        : */}
                         <div className="container document-container">
                             <div className="row">
                                 <div className="col-12 flex-box mb-3 text-center">
@@ -116,7 +116,7 @@ export default class HomePage extends React.Component {
                                 <this.Document />
                             </div>
                         </div>
-                }
+                {/* } */}
             </>
         );
     };

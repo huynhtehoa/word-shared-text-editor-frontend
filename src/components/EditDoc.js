@@ -38,22 +38,7 @@ export default class NewDoc extends React.Component {
         });
     };
 
-    handleShortcutSave = e => {
-        if (e.ctrlKey && e.shiftKey && e.which === 83) {
-            this.doubleFunctionSave(e);
-        };
-    };
-
-    handleClose = () => {
-        this.setState({
-            anchorEl: null,
-            isExisted: false,
-            isBlank: false,
-            isLong: false,
-            isSaved: false
-        });
-    };
-
+    
     getAllDoc = async () => {
         const res = await fetch('https://word-shared-text-editor.herokuapp.com/getalldoc');
         const jsonData = await res.json();
@@ -68,6 +53,21 @@ export default class NewDoc extends React.Component {
                 });
             };
         });
+    };
+
+    handleClose = () => {
+        this.setState({
+            anchorEl: null,
+            isExisted: false,
+            isBlank: false,
+            isLong: false,
+            isSaved: false
+        });
+    };
+    handleShortcutSave = e => {
+        if (e.ctrlKey && e.shiftKey && e.which === 83) {
+            this.doubleFunctionSave(e);
+        };
     };
 
     handleSave = async () => {
@@ -95,9 +95,11 @@ export default class NewDoc extends React.Component {
     };
 
     promptSave = e => {
+        let currentTarget = e.currentTarget;
+
         this.setState({
             isSaved: true,
-            anchorEl: e.currentTarget
+            anchorEl: currentTarget
         });
         setTimeout(() => this.handleClose(), 2000);
     };
@@ -114,6 +116,8 @@ export default class NewDoc extends React.Component {
     };
 
     checkTitle = e => {
+        let currentTarget = e.currentTarget;
+
         const { documents, id, title } = this.state;
 
         let currentTitle = '';
@@ -124,7 +128,7 @@ export default class NewDoc extends React.Component {
                     this.setState({
                         isExisted: true,
                         title: '',
-                        anchorEl: e.currentTarget
+                        anchorEl: currentTarget
                     });
                     this.afterFalseValid();
                 }
@@ -137,7 +141,7 @@ export default class NewDoc extends React.Component {
             this.setState({
                 isBlank: true,
                 title: currentTitle,
-                anchorEl: e.currentTarget
+                anchorEl: currentTarget
             });
             this.afterFalseValid();
         }
@@ -145,7 +149,7 @@ export default class NewDoc extends React.Component {
             this.setState({
                 isLong: true,
                 title: currentTitle,
-                anchorEl: e.currentTarget
+                anchorEl: currentTarget
             });
             this.afterFalseValid();
         };

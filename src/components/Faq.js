@@ -73,7 +73,7 @@ export default function Faq() {
                                         Message is automatically saved every 1 minute
                                     </li>
                                     <li>
-                                        You can use shortcut Ctrl + Shift + S
+                                        You can use shortcut Ctrl + Shift + S (for both Windows and Mac)
                                     </li>
                                     <li>
                                         You can click the Save button

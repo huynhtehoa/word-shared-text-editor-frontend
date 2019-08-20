@@ -2,13 +2,6 @@ import React from 'react';
 
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
-// import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
-// import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
-// import Link from '@ckeditor/ckeditor5-link/src/link';
-// import List from '@ckeditor/ckeditor5-list/src/list';
-// import Heading from '@ckeditor/ckeditor5-heading/src/heading';
-// import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 
 import Popover from '@material-ui/core/Popover';
 import WarningIcon from '@material-ui/icons/Warning';
@@ -17,16 +10,6 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import '../styles/editdoc.css'
 
 
-ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        toolbar: [ 'bold', 'italic' ]                      
-    } )
-    .then( editor => {
-        console.log( 'Editor was initialized', editor );
-    } )
-    .catch( error => {
-        console.error( error.stack );
-    } );
 
 export default class NewDoc extends React.Component {
 
@@ -51,7 +34,6 @@ export default class NewDoc extends React.Component {
     componentDidMount() {
         this.getAllDoc();
         this.autoSave();
-        document.getElementById("input-title").focus();
         this.handleSaveShortcut = window.addEventListener("keydown", e => {
             this.handleShortcutSave(e);
         });
@@ -200,19 +182,21 @@ export default class NewDoc extends React.Component {
                         <div className="col-12 text-center">
                             <input id="input-title" onBlur={this.checkTitle} onChange={e => this.setState({ title: e.target.value })} value={title} />
                         </div>
-                        <div className="col-12 mx-auto">
-                            <CKEditor
+                        <div className="col-12 mx-auto w-100">
+                            <textarea className="text-area" autofocus value={body} onChange={e => this.setState({ body: e.target.value })} />
+
+                            {/* <CKEditor
                                 data={body}
                                 editor={ClassicEditor}
                                 onChange={(e, editor) => {
                                     const data = editor.getData();
                                     this.setState({ body: data });
                                 }}
-                                // config={{
-                                //     removePlugins: ['image'],
-                                //     toolbar: ['Heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'link', 'undo', 'redo']
-                                // }}
-                            />
+                                config={{
+                                    removePlugins: ['image'],
+                                    toolbar: ['Heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'link', 'undo', 'redo']
+                                }}
+                            /> */}
                         </div>
                         <div className="col-12 text-center">
                             <button className="btn-lg btn save-btn" onClick={this.doubleFunctionSave}>Save</button>

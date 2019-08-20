@@ -13,7 +13,7 @@ export default class SearchPage extends React.Component {
         super(props);
         this.state = {
             documents: [],
-            loading: false
+            loading: true
         };
     };
 
@@ -29,7 +29,7 @@ export default class SearchPage extends React.Component {
 
         this.setState({
             documents: jsonData.results,
-            loading: true
+            loading: false
         });
     }
 

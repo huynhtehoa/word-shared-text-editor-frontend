@@ -132,7 +132,7 @@ export default class NewDoc extends React.Component {
             });
             this.afterFalseValid();
         }
-        if (title.length > 20) {
+        if (title.length > 30) {
             this.setState({
                 isLong: true,
                 title: currentTitle,
@@ -149,7 +149,7 @@ export default class NewDoc extends React.Component {
         if (isExisted) {
             message = 'Your doc title already exists!';
         } else if (isLong) {
-            message = 'Your doc title must not exceed 20 characters!';
+            message = 'Your doc title must not exceed 30 characters!';
         } else if (isBlank) {
             message = 'Your doc title cannot be blank!';
         } else if (isSaved) {

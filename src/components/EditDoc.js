@@ -183,6 +183,10 @@ export default class NewDoc extends React.Component {
                         </div>
                         <div className="col-12 mx-auto">
                             <CKEditor
+                                onInit={editor => {
+                                    // You can store the "editor" and use when it is needed.
+                                    console.log('Editor is ready to use!', editor);
+                                }}
                                 data={body}
                                 editor={ClassicEditor}
                                 onChange={(e, editor) => {

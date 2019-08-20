@@ -96,7 +96,7 @@ export default class HomePage extends React.Component {
                         </div>
                         <div className="col-12 flex-box mb-3 text-center">
                             <Typography variant="h4" className="sub-title">
-                                <span>Share your text to the world now!</span>
+                                <span>Share your message to the world now!</span>
                             </Typography>
                         </div>
                     </div>

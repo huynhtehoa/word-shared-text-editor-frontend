@@ -1,5 +1,10 @@
 .nav-link {
     color: white !important;
+    transition: all .15s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #17a2b8 !important;
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 990px) {

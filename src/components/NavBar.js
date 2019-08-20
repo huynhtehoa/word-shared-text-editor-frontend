@@ -64,14 +64,14 @@ export default class NavBar extends React.Component {
             <Navbar collapseOnSelect expand="lg" fixed="top" bg="dark" variant="dark">
                 <a className="nav-link" href="#" onClick={this.backHomePage}>
                     <Navbar.Brand>
-                        WSTE
+                        WSME
                     </Navbar.Brand>
                 </a>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" style={{ textAlign: "center" }}>
                     <Nav className="mr-auto">
-                        <a className="nav-link" href="#" onClick={this.backHomePage}>All Documents</a>
-                        <a className="nav-link" href="#" onClick={this.createDoc}>New Document</a>
+                        <a className="nav-link" href="#" onClick={this.backHomePage}>All Message</a>
+                        <a className="nav-link" href="#" onClick={this.createDoc}>New Message</a>
                         <a className="nav-link" href="#" onClick={this.faq}>FAQ</a>
                     </Nav>
                     <Form inline onSubmit={this.handleSearch} className="d-flex justify-content-center ml-auto mt-4 mb-4 mt-xl-0 mb-xl-0">

@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 
 import { makeStyles } from '@material-ui/core/styles';
-import '../styles/documentcard.css'
+import '../styles/documentcard.css';
 
 const useStyles = makeStyles({
     card: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 
 const handleEditClick = (e, id) => {
     return window.location.replace(`https://world-messages.netlify.com/edit/${id}`);
-}
+};
 
 export default function DocumentCard(props) {
     const classes = useStyles();
@@ -63,4 +63,4 @@ export default function DocumentCard(props) {
             </CardActions>
         </Card>
     );
-}
+};

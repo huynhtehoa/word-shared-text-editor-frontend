@@ -6,9 +6,7 @@ import Popover from '@material-ui/core/Popover';
 import WarningIcon from '@material-ui/icons/Warning';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
-import '../styles/editdoc.css'
-
-
+import '../styles/editdoc.css';
 
 export default class NewDoc extends React.Component {
 
@@ -37,7 +35,6 @@ export default class NewDoc extends React.Component {
             this.handleShortcutSave(e);
         });
     };
-
     
     getAllDoc = async () => {
         const res = await fetch('https://word-shared-text-editor.herokuapp.com/getalldoc');
@@ -64,6 +61,7 @@ export default class NewDoc extends React.Component {
             isSaved: false
         });
     };
+
     handleShortcutSave = e => {
         if (e.ctrlKey && e.shiftKey && e.which === 83) {
             this.doubleFunctionSave();
@@ -95,7 +93,6 @@ export default class NewDoc extends React.Component {
     };
 
     promptSave = () => {
-
         this.setState({
             isSaved: true,
             anchorEl: true
@@ -115,10 +112,9 @@ export default class NewDoc extends React.Component {
     };
 
     checkTitle = e => {
-        let currentTarget = e.currentTarget;
-
         const { documents, id, title } = this.state;
 
+        let currentTarget = e.currentTarget;
         let currentTitle = '';
 
         documents.map(doc => {
@@ -130,7 +126,7 @@ export default class NewDoc extends React.Component {
                         anchorEl: currentTarget
                     });
                     this.afterFalseValid();
-                }
+                };
             } else {
                 currentTitle = doc.title;
             };
@@ -143,7 +139,8 @@ export default class NewDoc extends React.Component {
                 anchorEl: currentTarget
             });
             this.afterFalseValid();
-        }
+        };
+
         if (title.length > 30) {
             this.setState({
                 isLong: true,
@@ -224,5 +221,5 @@ export default class NewDoc extends React.Component {
                 </div>
             </>
         );
-    }
+    };
 };

@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 
 import { RingLoader } from 'react-spinners';
 
-import DocumentCard from './DocumentCard'
+import DocumentCard from './DocumentCard';
 
 import '../styles/homepage.css';
 
@@ -25,9 +24,8 @@ export default class HomePage extends React.Component {
     componentDidMount() {
         this.getDoc();
         this.scrollListener = window.addEventListener("scroll", e => {
-            this.handleScroll(e)
+            this.handleScroll(e);
         });
-
     };
 
     getDoc = async () => {
@@ -52,6 +50,7 @@ export default class HomePage extends React.Component {
 
     handleScroll = e => {
         const { scrolling, totalPages, pageNo } = this.state;
+
         if (scrolling) return;
         if (totalPages <= pageNo) return;
 
@@ -61,10 +60,10 @@ export default class HomePage extends React.Component {
         let bottomOffset = 20;
 
         if (pageOffset > lastColOffset - bottomOffset) this.loadMore();
-    }
+    };
 
     Document = () => {
-        const { documents } = this.state
+        const { documents } = this.state;
 
         if (documents.length === 0) {
             return (
@@ -75,7 +74,7 @@ export default class HomePage extends React.Component {
                         </Typography>
                     </div>
                 </>
-            )
+            );
         } else {
             return documents.map(document => {
                 return (

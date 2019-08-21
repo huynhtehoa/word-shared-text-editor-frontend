@@ -20,7 +20,7 @@ export default class SearchPage extends React.Component {
 
     componentDidMount() {
         this.getSearchDocuments();
-    }
+    };
 
     getSearchDocuments = async () => {
         let searchInput = window.location.search.split("=")[1];
@@ -32,7 +32,7 @@ export default class SearchPage extends React.Component {
             documents: jsonData.results,
             loading: false
         });
-    }
+    };
 
     Document = () => {
         const { documents } = this.state

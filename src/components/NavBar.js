@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Nav, Navbar, Form, Button, FormControl } from 'react-bootstrap';
 
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-import '../styles/navbar.css'
+import '../styles/navbar.css';
 
 export default class NavBar extends React.Component {
     constructor(props) {
@@ -51,7 +51,7 @@ export default class NavBar extends React.Component {
 
     hidePreview = () => {
         return document.getElementById('dropdown-content').style.display = "none";
-    }
+    };
 
     RenderPreview = () => {
         const { searchPreview } = this.state;
@@ -80,9 +80,9 @@ export default class NavBar extends React.Component {
     };
 
     handleSearch = e => {
-        const { searchInput } = this.state;
-
         e.preventDefault();
+
+        const { searchInput } = this.state;
 
         if (/^\s*$/.test(searchInput)) {
             alert('You cannot leave it blank');
@@ -104,8 +104,10 @@ export default class NavBar extends React.Component {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-        let jsonData = await res.json()
+        });
+
+        let jsonData = await res.json();
+        
         this.setState({
             newDocId: jsonData.doc_id,
         }, () => window.location.replace(`https://world-messages.netlify.com/edit/${this.state.newDocId}`))
@@ -121,7 +123,6 @@ export default class NavBar extends React.Component {
     };
 
     render() {
-
         return (
             <Navbar collapseOnSelect expand="lg" fixed="top" bg="dark" variant="dark">
                 <NavLink to='/'>
@@ -150,5 +151,5 @@ export default class NavBar extends React.Component {
                 </Navbar.Collapse>
             </Navbar>
         );
-    }
+    };
 };
